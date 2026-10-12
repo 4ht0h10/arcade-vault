@@ -10,14 +10,10 @@ Arcade Vault: an online platform for playing games and competing for the highest
 
 Development follows Spec Driven Design (SDD) using the `/spec` and `/spec-impl` skills from https://github.com/Klerith/fernando-skills (install with `npx skills@latest add Klerith/fernando-skills`). Write a spec before implementing a feature.
 
-## Commands
-
-- `npm run dev`: dev server (Turbopack)
-- `npm run build`: production build (also runs type checking)
-- `npm run lint`: ESLint (flat config, `eslint-config-next` core-web-vitals + typescript)
-- `npx tsc --noEmit`: type check only
-
 No test framework is configured yet.
+
+## Skills
+Always use /frontend-design to design the user interface.
 
 ## Stack and configuration
 
