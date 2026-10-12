@@ -8,8 +8,15 @@ Desarrollado según SDD usando las SKILLS **/spec** y **/spec-impl**
 
 Siguiendo las buenas practicas recomendadas 👉 https://github.com/Klerith/fernando-skills
 
-## Skills usadas
+## Instalación de las Skills para SDD usadas
 
 ```bash
 npx skills@latest add Klerith/fernando-skills
 ```
+
+## Commands
+
+- `npm run dev`: dev server (Turbopack)
+- `npm run build`: production build (also runs type checking)
+- `npm run lint`: ESLint (flat config, `eslint-config-next` core-web-vitals + typescript)
+- `npx tsc --noEmit`: type check only
