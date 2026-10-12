@@ -103,7 +103,7 @@ Convenciones:
 ## Criterios de aceptación
 
 - [ ] `npm run build` termina sin errores.
-- [ ] `npm run lint` termina sin errores.
+- [ ] `npm run lint` termina sin errores (cubre sólo el código del proyecto; `references/**` está excluido en `eslint.config.mjs`).
 - [ ] La consola del navegador no muestra errores ni avisos de hidratación en ninguna ruta.
 - [ ] `/` muestra el hero "ARCADE VAULT" y 8 tarjetas de juego.
 - [ ] Escribir "ser" en el buscador deja sólo la tarjeta SERPENTINA.
@@ -146,6 +146,8 @@ Convenciones:
 - **Sí:** `notFound()` + `app/not-found.tsx` para ids inexistentes.
 - **No:** redirigir a `/`. Oculta el error al usuario.
 - **Sí:** las páginas son Server Components y la interactividad vive en Client Components hoja.
+- **Sí:** excluir `references/**` del lint. Los `.jsx` del prototipo usan React UMD global y no son código del proyecto.
+- **No:** borrar `references/`. Se necesita como referencia visual.
 
 ## Riesgos
 

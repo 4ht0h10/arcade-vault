@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Prototype templates (React UMD globals), reference material only.
+    "references/**",
   ]),
 ]);
 
