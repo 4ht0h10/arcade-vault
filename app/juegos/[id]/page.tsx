@@ -1,5 +1,7 @@
+import { Suspense } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { LoadingScreen } from "@/components/loading-screen";
 import { GAMES, getGame, seededScores } from "@/lib/games";
 
 export function generateStaticParams() {
@@ -8,7 +10,16 @@ export function generateStaticParams() {
 
 const TOP_CLASS = [" top1", " top2", " top3"];
 
-export default async function GameDetailPage({ params }: PageProps<"/juegos/[id]">) {
+// params is URL data: reading it outside Suspense would tie the shared App Shell to one URL
+export default function GameDetailPage({ params }: PageProps<"/juegos/[id]">) {
+  return (
+    <Suspense fallback={<LoadingScreen />}>
+      <GameDetail params={params} />
+    </Suspense>
+  );
+}
+
+async function GameDetail({ params }: Pick<PageProps<"/juegos/[id]">, "params">) {
   const { id } = await params;
   const game = getGame(id);
   if (!game) notFound();
