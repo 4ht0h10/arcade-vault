@@ -1,0 +1,10 @@
+{
+  "browser": {
+    "browserName": "chromium",
+    "launchOptions": { "headless": false },
+    "contextOptions": { "viewport": { "width": 1440, "height": 900 } }
+  },
+  "outputDir": "./.playwright-mcp/artifacts",
+  "console": { "level": "warning" },
+  "timeouts": { "action": 5000, "navigation": 60000 }
+}
