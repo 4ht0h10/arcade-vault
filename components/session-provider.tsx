@@ -15,23 +15,23 @@ type SessionContextValue = {
   logout: () => void;
 };
 
-const SessionContext = createContext<SessionContextValue | null>(null);
+type SessionActions = Omit<SessionContextValue, "user">;
+
+const SessionContext = createContext<SessionActions | null>(null);
+
+const actions: SessionActions = { login: writeUser, logout: clearUser };
 
 const getServerSnapshot = () => null;
 
 export function SessionProvider({ children }: { children: React.ReactNode }) {
-  // null on the server and during hydration; localStorage is read once mounted.
-  const user = useSyncExternalStore(subscribeUser, getUserSnapshot, getServerSnapshot);
-
-  return (
-    <SessionContext value={{ user, login: writeUser, logout: clearUser }}>
-      {children}
-    </SessionContext>
-  );
+  return <SessionContext value={actions}>{children}</SessionContext>;
 }
 
 export function useSession(): SessionContextValue {
   const ctx = useContext(SessionContext);
   if (!ctx) throw new Error("useSession must be used inside <SessionProvider>");
-  return ctx;
+  // Subscribed per consumer, not passed through context: a consumer inside a Suspense
+  // boundary that hydrates late must still hydrate with the server snapshot (null).
+  const user = useSyncExternalStore(subscribeUser, getUserSnapshot, getServerSnapshot);
+  return { user, ...ctx };
 }

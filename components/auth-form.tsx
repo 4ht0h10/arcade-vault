@@ -1,15 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useSession } from "@/components/session-provider";
 
 type Tab = "in" | "up";
 
-export function AuthForm() {
+export function AuthForm({ initialTab }: { initialTab: Tab }) {
   const router = useRouter();
   const { login, logout } = useSession();
-  const [tab, setTab] = useState<Tab>("in");
+  const [tab, setTab] = useState<Tab>(initialTab);
   const [user, setUser] = useState("");
   const [pass, setPass] = useState("");
   const [email, setEmail] = useState("");
@@ -18,12 +18,12 @@ export function AuthForm() {
   const submit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     login({ name: (user || "PLAYER1").toUpperCase().slice(0, 10) });
-    router.push("/");
+    router.push("/games");
   };
 
   const playAsGuest = () => {
     logout();
-    router.push("/");
+    router.push("/games");
   };
 
   return (
@@ -95,4 +95,10 @@ export function AuthForm() {
       </div>
     </div>
   );
+}
+
+// "?tab=registro" abre "CREAR CUENTA"; ausente o cualquier otro valor, "INICIAR SESIÓN".
+export function AuthFormFromParams() {
+  const tab = useSearchParams().get("tab");
+  return <AuthForm initialTab={tab === "registro" ? "up" : "in"} />;
 }
