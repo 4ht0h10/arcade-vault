@@ -1,6 +1,6 @@
 # SPEC 03 — Landing page de Inicio
 
-> **Status:** Aprobado
+> **Status:** Implementado
 > **Depends on:** SPEC 01, SPEC 02
 > **Date:** 2026-10-15
 > **Objective:** Sustituir el marcador "HOLA MUNDO" de `/` por la landing page de `references/templates/home-about/home.jsx`, con el mismo aspecto, textos y secciones.
@@ -86,25 +86,25 @@ Convenciones:
 
 ## Criterios de aceptación
 
-- [ ] `npm run build` termina sin errores.
-- [ ] `npm run lint` termina sin errores.
-- [ ] La consola del navegador no muestra errores ni avisos de hidratación en `/`, `/login` y `/login?tab=registro`.
-- [ ] `/` muestra el título "EL ARCADE", "CLÁSICO ESTÁ", "DE VUELTA" y ya no muestra "HOLA MUNDO".
-- [ ] El hero contiene 8 siluetas animadas.
-- [ ] La sección "// 01" muestra 4 tarjetas: JUEGOS CLÁSICOS, 100% GRATIS, LADDER BOARDS, SIEMPRE CRECIENDO.
-- [ ] La sección "// 02" muestra 6 mini-tarjetas: BLOQUE BUSTER, CAÍDA, SERPENTINA, GLOTÓN, INVASORES, ROCAS.
-- [ ] La franja de estadísticas muestra 3 bloques: "12+", "MILES", "GLOBAL".
-- [ ] "▸ ÚLTIMAS PUNTUACIONES" muestra 7 filas y "▸ TOP JUGADORES · HOY" muestra 5 filas, con NEONFOX en la #01.
+- [X] `npm run build` termina sin errores.
+- [X] `npm run lint` termina sin errores.
+- [X] La consola del navegador no muestra errores ni avisos de hidratación en `/`, `/login` y `/login?tab=registro`.
+- [X] `/` muestra el título "EL ARCADE", "CLÁSICO ESTÁ", "DE VUELTA" y ya no muestra "HOLA MUNDO".
+- [X] El hero contiene 8 siluetas animadas.
+- [X] La sección "// 01" muestra 4 tarjetas: JUEGOS CLÁSICOS, 100% GRATIS, LADDER BOARDS, SIEMPRE CRECIENDO.
+- [X] La sección "// 02" muestra 6 mini-tarjetas: BLOQUE BUSTER, CAÍDA, SERPENTINA, GLOTÓN, INVASORES, ROCAS.
+- [X] La franja de estadísticas muestra 3 bloques: "12+", "MILES", "GLOBAL".
+- [X] "▸ ÚLTIMAS PUNTUACIONES" muestra 7 filas y "▸ TOP JUGADORES · HOY" muestra 5 filas, con NEONFOX en la #01.
 - [ ] La sección "// 04 PRECIOS" muestra "$0", 6 ventajas, el sello "FREE PLAY" y 3 preguntas frecuentes.
 - [ ] Al cargar `/` las secciones con `.reveal` están ocultas y aparecen al hacer scroll hasta ellas.
-- [ ] "▶  EXPLORAR JUEGOS", "VER TODOS LOS JUEGOS →" e "INSERTAR MONEDA →" navegan a `/games`.
-- [ ] "✦  CREAR CUENTA" y "EMPEZAR GRATIS →" navegan a `/login?tab=registro`.
-- [ ] `/login?tab=registro` muestra la pestaña "CREAR CUENTA" activa y el campo "Correo electrónico".
+- [X] "▶  EXPLORAR JUEGOS", "VER TODOS LOS JUEGOS →" e "INSERTAR MONEDA →" navegan a `/games`.
+- [X] "✦  CREAR CUENTA" y "EMPEZAR GRATIS →" navegan a `/login?tab=registro`.
+- [X] `/login?tab=registro` muestra la pestaña "CREAR CUENTA" activa y el campo "Correo electrónico".
 - [ ] `/login` y `/login?tab=otro` muestran la pestaña "INICIAR SESIÓN" activa y sin campo de correo.
 - [ ] Cambiar de pestaña en `/login?tab=registro` no cambia la URL.
 - [ ] Pulsar la mini-tarjeta de CAÍDA navega a `/games/caida`.
-- [ ] "VER SALÓN →" navega a `/salon`.
-- [ ] La nav sigue mostrando sólo "Inicio", "Biblioteca" y "Salón de la Fama", con "Inicio" activo en `/`.
+- [X] "VER SALÓN →" navega a `/salon`.
+- [X] La nav sigue mostrando sólo "Inicio", "Biblioteca" y "Salón de la Fama", con "Inicio" activo en `/`.
 - [ ] A 1440px las características se ven en 4 columnas y el rail en 6 columnas; a 390px las características se ven en 1 columna y el rail en 2.
 - [ ] Las capturas de Playwright de `/` a 1440px y 390px coinciden con las del template en orden de secciones, textos, colores y distribución.
 
