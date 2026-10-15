@@ -1,6 +1,6 @@
 # SPEC 02 — Página de Inicio y Biblioteca en /games
 
-> **Status:** Aprobado
+> **Status:** Implementado
 > **Depends on:** SPEC 01
 > **Date:** 2026-10-15
 > **Objective:** Añadir una página de Inicio provisional "HOLA MUNDO" en `/`, enlazada como "Inicio" en la nav antes de "Biblioteca", y mover la Biblioteca y sus rutas de juego al árbol `/games`.
@@ -56,7 +56,8 @@ Mapa de rutas resultante:
 3. Mover con `git mv` `app/juegos/[id]/page.tsx` → `app/games/[id]/page.tsx` y `app/juegos/[id]/jugar/page.tsx` → `app/games/[id]/play/page.tsx`, conservando `generateStaticParams`, `notFound()` y la lectura de `params` dentro de `Suspense`. Eliminar `app/juegos/`.
 4. Actualizar los enlaces internos a las rutas nuevas:
    - `components/game-card.tsx`: `href` → `/games/<id>`.
-   - `app/games/[id]/page.tsx`: "▶ JUGAR AHORA" → `/games/<id>/play`; "VOLVER AL VAULT" → `/games`.
+   - `app/games/[id]/page.tsx`: "▶ JUGAR AHORA" → `/games/<id>/play`; "VOLVER AL VAULT" → `/games`; tipo `PageProps<"/juegos/[id]">` → `PageProps<"/games/[id]">`.
+   - `app/games/[id]/play/page.tsx`: tipo `PageProps<"/juegos/[id]/jugar">` → `PageProps<"/games/[id]/play">`.
    - `components/game-player.tsx`: "SALIR" → `/games/<id>`; "VOLVER AL VAULT" → `/games`.
    - `components/hall-of-fame.tsx` y `app/not-found.tsx`: "VOLVER AL VAULT" → `/games`.
    - `components/auth-form.tsx`: ambos `router.push("/")` → `router.push("/games")`.
@@ -65,24 +66,24 @@ Mapa de rutas resultante:
 
 ## Criterios de aceptación
 
-- [ ] `npm run build` termina sin errores.
-- [ ] `npm run lint` termina sin errores.
-- [ ] La consola del navegador no muestra errores ni avisos de hidratación en `/`, `/games`, `/games/caida` y `/games/caida/play`.
-- [ ] `/` muestra el hero con el texto "HOLA MUNDO" y ninguna tarjeta de juego.
-- [ ] `/games` muestra el hero "ARCADE VAULT" y 8 tarjetas de juego.
-- [ ] La nav muestra, en este orden: "Inicio", "Biblioteca", "Salón de la Fama", tanto en la barra como en el panel móvil.
-- [ ] En `/` sólo "Inicio" está activo.
-- [ ] En `/games`, `/games/caida` y `/games/caida/play` sólo "Biblioteca" está activo.
-- [ ] Pulsar el logo navega a `/`.
-- [ ] Pulsar una tarjeta o su botón JUGAR navega a `/games/<id>`.
-- [ ] "▶ JUGAR AHORA" navega a `/games/<id>/play`.
-- [ ] "SALIR" en el reproductor navega a `/games/<id>`.
-- [ ] "VOLVER AL VAULT" navega a `/games` desde el detalle, el modal del reproductor, el salón y la 404.
-- [ ] Enviar el formulario de `/login` con usuario "kai" navega a `/games` y la nav muestra "KAI ▾".
-- [ ] "JUGAR COMO INVITADO" navega a `/games`.
-- [ ] `/juegos/caida` y `/juegos/caida/jugar` muestran la página 404 arcade.
-- [ ] `/games/no-existe` y `/games/no-existe/play` muestran la página 404 arcade.
-- [ ] `grep -rn "/juegos" app components lib` no devuelve resultados.
+- [X] `npm run build` termina sin errores.
+- [X] `npm run lint` termina sin errores.
+- [X] La consola del navegador no muestra errores ni avisos de hidratación en `/`, `/games`, `/games/caida` y `/games/caida/play`.
+- [X] `/` muestra el hero con el texto "HOLA MUNDO" y ninguna tarjeta de juego.
+- [X] `/games` muestra el hero "ARCADE VAULT" y 8 tarjetas de juego.
+- [X] La nav muestra, en este orden: "Inicio", "Biblioteca", "Salón de la Fama", tanto en la barra como en el panel móvil.
+- [X] En `/` sólo "Inicio" está activo.
+- [X] En `/games`, `/games/caida` y `/games/caida/play` sólo "Biblioteca" está activo.
+- [X] Pulsar el logo navega a `/`.
+- [X] Pulsar una tarjeta o su botón JUGAR navega a `/games/<id>`.
+- [X] "▶ JUGAR AHORA" navega a `/games/<id>/play`.
+- [X] "SALIR" en el reproductor navega a `/games/<id>`.
+- [X] "VOLVER AL VAULT" navega a `/games` desde el detalle, el modal del reproductor, el salón y la 404.
+- [X] Enviar el formulario de `/login` con usuario "kai" navega a `/games` y la nav muestra "KAI ▾".
+- [X] "JUGAR COMO INVITADO" navega a `/games`.
+- [X] `/juegos/caida` y `/juegos/caida/jugar` muestran la página 404 arcade.
+- [X] `/games/no-existe` y `/games/no-existe/play` muestran la página 404 arcade.
+- [X] `grep -rn "/juegos" app components lib` no devuelve resultados.
 
 ## Decisiones
 
@@ -99,6 +100,7 @@ Mapa de rutas resultante:
 - **No:** aplicar `/frontend-design` en esta spec. No hay UI nueva; se aplicará en la spec de la landing.
 - **No:** renombrar `/salon` y `/login`. Fuera del alcance pedido.
 - **Sí:** `git mv` para las rutas de juego. Conserva el historial y el arreglo de `params` detrás de `Suspense` (commit `d18e170`).
+- **Sí:** actualizar el argumento de `PageProps<...>` en las rutas movidas. Next genera estos tipos a partir de la estructura de carpetas; con la ruta antigua no compila. Sólo cambia el tipo, no la lógica.
 
 ## Riesgos
 

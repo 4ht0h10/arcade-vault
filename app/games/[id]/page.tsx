@@ -11,7 +11,7 @@ export function generateStaticParams() {
 const TOP_CLASS = [" top1", " top2", " top3"];
 
 // params is URL data: reading it outside Suspense would tie the shared App Shell to one URL
-export default function GameDetailPage({ params }: PageProps<"/juegos/[id]">) {
+export default function GameDetailPage({ params }: PageProps<"/games/[id]">) {
   return (
     <Suspense fallback={<LoadingScreen />}>
       <GameDetail params={params} />
@@ -19,7 +19,7 @@ export default function GameDetailPage({ params }: PageProps<"/juegos/[id]">) {
   );
 }
 
-async function GameDetail({ params }: Pick<PageProps<"/juegos/[id]">, "params">) {
+async function GameDetail({ params }: Pick<PageProps<"/games/[id]">, "params">) {
   const { id } = await params;
   const game = getGame(id);
   if (!game) notFound();
@@ -58,10 +58,10 @@ async function GameDetail({ params }: Pick<PageProps<"/juegos/[id]">, "params">)
             </div>
           </div>
           <div className="detail-actions">
-            <Link href={`/juegos/${game.id}/jugar`} className="btn xl pulse">
+            <Link href={`/games/${game.id}/play`} className="btn xl pulse">
               ▶ JUGAR AHORA
             </Link>
-            <Link href="/" className="btn ghost lg">
+            <Link href="/games" className="btn ghost lg">
               VOLVER AL VAULT
             </Link>
           </div>

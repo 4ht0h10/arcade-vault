@@ -9,7 +9,7 @@ export function generateStaticParams() {
 }
 
 // params is URL data: reading it outside Suspense would tie the shared App Shell to one URL
-export default function GamePlayerPage({ params }: PageProps<"/juegos/[id]/jugar">) {
+export default function GamePlayerPage({ params }: PageProps<"/games/[id]/play">) {
   return (
     <Suspense fallback={<LoadingScreen />}>
       <GamePlayerScreen params={params} />
@@ -17,7 +17,7 @@ export default function GamePlayerPage({ params }: PageProps<"/juegos/[id]/jugar
   );
 }
 
-async function GamePlayerScreen({ params }: Pick<PageProps<"/juegos/[id]/jugar">, "params">) {
+async function GamePlayerScreen({ params }: Pick<PageProps<"/games/[id]/play">, "params">) {
   const { id } = await params;
   const game = getGame(id);
   if (!game) notFound();

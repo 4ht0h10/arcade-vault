@@ -1,16 +1,9 @@
-import { LibraryBrowser } from "@/components/library-browser";
-
-export default function LibraryPage() {
+export default function HomePage() {
   return (
     <div className="fade-in">
       <section className="av-hero">
-        <h1 className="flicker">ARCADE VAULT</h1>
-        <div className="sub">
-          INSERTA UNA MONEDA PARA JUGAR <span className="blink">_</span>
-        </div>
+        <h1 className="flicker">HOLA MUNDO</h1>
       </section>
-
-      <LibraryBrowser />
     </div>
   );
 }
