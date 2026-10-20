@@ -1,3 +1,4 @@
+import { ContactForm } from "@/components/about/contact-form";
 import { HighlightIcon, type HighlightIconKind } from "@/components/about/highlight-icon";
 import { RevealObserver } from "@/components/home/reveal-observer";
 
@@ -62,8 +63,7 @@ export default function AboutPage() {
             </div>
           </div>
 
-          {/* TODO(SPEC 04, paso 8): sustituir por <ContactForm /> */}
-          <div className="contact-form">FORMULARIO — PRÓXIMAMENTE</div>
+          <ContactForm />
         </div>
       </section>
     </div>

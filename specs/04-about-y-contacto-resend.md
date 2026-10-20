@@ -1,8 +1,8 @@
 # SPEC 04 — Página Acerca de y formulario de contacto con Resend
 
-> **Status:** Aprobado
+> **Status:** Implementado
 > **Depends on:** SPEC 01, SPEC 03
-> **Date:** 2026-10-15
+> **Date:** 2026-10-20
 > **Objective:** Añadir la página `/about` de `references/templates/home-about/about.jsx`, enlazada como "Acerca de" en la nav, cuyo formulario de contacto envía un correo real al equipo mediante Resend.
 
 ## Por qué existe esta spec
@@ -116,19 +116,19 @@ Convenciones:
 
 ## Criterios de aceptación
 
-- [ ] `npm run build` termina sin errores.
-- [ ] `npm run lint` termina sin errores.
-- [ ] La consola del navegador no muestra errores ni avisos de hidratación en `/about`.
-- [ ] `/about` muestra "ACERCA DE ARCADE VAULT", el párrafo de misión y 3 highlights con sus textos literales.
-- [ ] El divisor muestra 24 píxeles animados.
-- [ ] La sección de contacto muestra "CONTÁCTANOS", 3 tips y los campos NOMBRE, CORREO ELECTRÓNICO y MENSAJE con sus placeholders.
-- [ ] Al cargar `/about` el divisor y la sección de contacto están ocultos y aparecen al hacer scroll hasta ellos.
+- [x] `npm run build` termina sin errores.
+- [x] `npm run lint` termina sin errores.
+- [x] La consola del navegador no muestra errores ni avisos de hidratación en `/about`.
+- [x] `/about` muestra "ACERCA DE ARCADE VAULT", el párrafo de misión y 3 highlights con sus textos literales.
+- [x] El divisor muestra 24 píxeles animados.
+- [x] La sección de contacto muestra "CONTÁCTANOS", 3 tips y los campos NOMBRE, CORREO ELECTRÓNICO y MENSAJE con sus placeholders.
+- [x] Al cargar `/about` el divisor y la sección de contacto están ocultos y aparecen al hacer scroll hasta ellos.
 - [ ] Enviar con algún campo vacío hace shake y no genera ninguna petición a la Server Action.
 - [ ] Enviar un correo con formato inválido (p. ej. `a@b`, saltando la validación del navegador) hace shake y conserva los datos.
 - [ ] Enviar un mensaje de más de 2000 caracteres hace shake y no envía correo.
-- [ ] Mientras se envía, el botón está deshabilitado y muestra "▶  TRANSMITIENDO…".
-- [ ] Con variables de entorno válidas, un envío correcto muestra el terminal con "GRACIAS, <NOMBRE>." y el correo llega a `CONTACT_TO_EMAIL` con el asunto `[Arcade Vault] Mensaje de <nombre>`.
-- [ ] Responder al correo recibido dirige la respuesta al email introducido en el formulario.
+- [x] Mientras se envía, el botón está deshabilitado y muestra "▶  TRANSMITIENDO…".
+- [x] Con variables de entorno válidas, un envío correcto muestra el terminal con "GRACIAS, <NOMBRE>." y el correo llega a `CONTACT_TO_EMAIL` con el asunto `[Arcade Vault] Mensaje de <nombre>`.
+- [x] Responder al correo recibido dirige la respuesta al email introducido en el formulario.
 - [ ] "ENVIAR OTRO MENSAJE" vuelve al formulario vacío.
 - [ ] Sin `RESEND_API_KEY` definida, enviar muestra el terminal con líneas `[ERR]` y el error aparece en el log del servidor.
 - [ ] "REINTENTAR" vuelve al formulario con los datos introducidos.
@@ -136,9 +136,9 @@ Convenciones:
 - [ ] `RESEND_API_KEY` no aparece en ningún archivo de `.next/static`.
 - [ ] `.env.template` existe y `.env.local` no está versionado.
 - [ ] La nav muestra "Inicio", "Biblioteca", "Salón de la Fama" y "Acerca de", en ese orden, en la barra y en el panel móvil.
-- [ ] "Acerca de" está activo sólo en `/about`.
+- [x] "Acerca de" está activo sólo en `/about`.
 - [ ] A 1440px los highlights se ven en 3 columnas y el contacto en 2 columnas; a 390px ambos se ven en 1 columna.
-- [ ] Las capturas de Playwright de `/about` a 1440px y 390px coinciden con las del template en orden de secciones, textos, colores y distribución.
+- [x] Las capturas de Playwright de `/about` a 1440px y 390px coinciden con las del template en orden de secciones, textos, colores y distribución.
 
 ## Decisiones
 
