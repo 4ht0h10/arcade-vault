@@ -42,7 +42,7 @@ Como el envío real puede tardar o fallar, se añaden un estado de carga y un es
   - Reply-To: correo introducido por el usuario.
   - Asunto: `[Arcade Vault] Mensaje de <nombre>`.
   - Cuerpo en texto plano con nombre, correo y mensaje.
-- Variables de entorno `RESEND_API_KEY` y `CONTACT_TO_EMAIL` en `.env.local` (ignorado por git), documentadas en `.env.example`.
+- Variables de entorno `RESEND_API_KEY` y `CONTACT_TO_EMAIL` en `.env.local` (ignorado por git), documentadas en `.env.template`.
 - Si falta alguna variable de entorno o Resend devuelve error: la acción registra el error en el log del servidor y la UI muestra el estado Error.
 - Nav (barra y panel móvil): nuevo enlace "Acerca de" → `/about`, después de "Salón de la Fama", activo sólo en `/about`.
 - Animación `.reveal` del divisor y la sección de contacto, reutilizando `RevealObserver` de SPEC 03.
@@ -84,7 +84,7 @@ Campos del `FormData`: `name`, `email`, `msg`, `website` (honeypot).
 Variables de entorno (sólo servidor, sin prefijo `NEXT_PUBLIC_`):
 
 ```bash
-# .env.example
+# .env.template
 RESEND_API_KEY=
 CONTACT_TO_EMAIL=
 ```
@@ -108,7 +108,7 @@ Convenciones:
 2. Crear `components/about/highlight-icon.tsx` (`HighlightIcon` + `HighlightIconKind`), Server Component con los SVG del template.
 3. Crear `app/about/page.tsx`: Server Component con hero, highlights, divisor, intro de contacto y `<RevealObserver />`. En el hueco del formulario, un placeholder temporal. Verificación: `/about` muestra todo menos el formulario.
 4. Añadir el enlace "Acerca de" a la barra y al panel móvil de `components/nav.tsx`, con `isAbout = pathname === "/about"`. Verificación: el enlace aparece y queda activo en `/about`.
-5. Instalar `resend` (`npm install resend`). Crear `.env.example` con `RESEND_API_KEY` y `CONTACT_TO_EMAIL` vacíos.
+5. Instalar `resend` (`npm install resend`). Crear `.env.template` con `RESEND_API_KEY` y `CONTACT_TO_EMAIL` vacíos.
 6. Crear `lib/contact.ts` con `"use server"`, los tipos del modelo de datos y `sendContact`: honeypot → validación → comprobación de variables de entorno → `resend.emails.send` con from, to, replyTo, subject y text. Captura cualquier error, lo registra con `console.error` y devuelve `status: "error"`.
 7. Crear `components/about/contact-form.tsx` (Client Component): `useActionState(sendContact, { status: "idle" })`, validación de vacíos con shake antes de enviar, campo honeypot oculto, botón deshabilitado con "▶  TRANSMITIENDO…" mientras `pending`, y render de los estados Idle / Éxito / Error con el terminal del template. "ENVIAR OTRO MENSAJE" vacía el formulario; "REINTENTAR" vuelve al formulario con `values`.
 8. Sustituir el placeholder de `app/about/page.tsx` por `<ContactForm />`. Verificación manual con `.env.local` real: enviar un mensaje y recibirlo en `CONTACT_TO_EMAIL`.
@@ -134,7 +134,7 @@ Convenciones:
 - [ ] "REINTENTAR" vuelve al formulario con los datos introducidos.
 - [ ] Un envío con el campo `website` relleno muestra éxito y no envía correo.
 - [ ] `RESEND_API_KEY` no aparece en ningún archivo de `.next/static`.
-- [ ] `.env.example` existe y `.env.local` no está versionado.
+- [ ] `.env.template` existe y `.env.local` no está versionado.
 - [ ] La nav muestra "Inicio", "Biblioteca", "Salón de la Fama" y "Acerca de", en ese orden, en la barra y en el panel móvil.
 - [ ] "Acerca de" está activo sólo en `/about`.
 - [ ] A 1440px los highlights se ven en 3 columnas y el contacto en 2 columnas; a 390px ambos se ven en 1 columna.
