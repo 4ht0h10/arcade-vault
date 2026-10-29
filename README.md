@@ -10,7 +10,7 @@ Todo ello con una estética retro de neón y pixel art: rejilla en perspectiva, 
 ### Qué incluye
 
 - **Inicio:** landing que presenta la plataforma, los juegos destacados, la actividad reciente y las preguntas frecuentes.
-- **Biblioteca (`/games`):** catálogo de juegos con su ficha y su pantalla de partida. Títulos como *Bloque Buster*, *Caída*, *Serpentina*, *Glotón*, *Invasores*, *Rocas*, *Ranaria* o *Duelo Pixel*.
+- **Biblioteca (`/games`):** catálogo de juegos con su ficha y su pantalla de partida. Títulos como _Bloque Buster_, _Caída_, _Serpentina_, _Glotón_, _Invasores_, _Rocas_, _Ranaria_ o _Duelo Pixel_.
 - **Salón de la Fama (`/salon`):** ranking con las mejores puntuaciones de cada juego.
 - **Sesión (`/login`):** inicia sesión o juega como invitado; con sesión, tus puntuaciones se guardan para aparecer en el ranking.
 - **Acerca de (`/about`):** la misión del proyecto y un formulario de contacto que envía un correo real al equipo mediante [Resend](https://resend.com).
@@ -52,12 +52,32 @@ La aplicación queda disponible en http://localhost:3000.
 
 Las variables de entorno sólo hacen falta para el formulario de contacto. Con el remitente de pruebas `onboarding@resend.dev`, `CONTACT_TO_EMAIL` debe ser el email de tu cuenta de Resend.
 
+## Supabase
+
+La app incluye los clientes de [Supabase](https://supabase.com) en `lib/supabase/` (`server.ts` para Server Components, Server Actions y Route Handlers; `client.ts` para Client Components). Todavía ninguna pantalla los usa.
+
+Variables necesarias en `.env.local`:
+
+- `NEXT_PUBLIC_SUPABASE_URL`: URL del proyecto (`https://<ref>.supabase.co`).
+- `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`: publishable key (`sb_publishable_…`), no la anon key legacy.
+
+Ambas están en el dashboard de Supabase, en **Project Settings → API Keys** y **Data API**. Son públicas: llegan al navegador y la seguridad de los datos depende de RLS.
+
+Para comprobar la conexión (requiere Node 24):
+
+```bash
+npm run supabase:check
+```
+
+Imprime `[OK] Supabase conectado: <url>` o `[ERR] <motivo>` y sale con código 1.
+
 ## Commands
 
 - `npm run dev`: dev server (Turbopack)
 - `npm run build`: production build (also runs type checking)
 - `npm run lint`: ESLint (flat config, `eslint-config-next` core-web-vitals + typescript)
 - `npx tsc --noEmit`: type check only
+- `npm run supabase:check`: checks the Supabase connection with the vars from `.env.local`
 
 ## Autores
 
